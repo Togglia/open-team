@@ -1,0 +1,73 @@
+#include <stdio.h>
+#define INF 99
+
+int d[9];
+int arr[3][3];
+int b,c;
+
+void func() {
+   int i, j;
+
+   b = 0, c = 0;
+   arr[b][c] = 0; //초기 위치
+
+   for (i = 0; i < 3; i++)
+   {
+
+      for (j = 0; j < 3; j++) {
+            
+
+         if ((i == b + 1) || (j == b + 1))
+         {
+            //1번째 case
+            if((i==b+1)&&(j!=c+1))
+            { 
+               if (j == c) //j변동없이 i만 1차이
+                  arr[i][j] = 1;
+               else
+                  arr[i][j] = INF;
+            }
+            //2번째 case
+            else if((j==c+1)&&(i!=b+1))
+            { 
+               if (i == b) //i변동없이 j만 1차이
+                  arr[i][j] = 1;
+               else
+                  arr[i][j] = INF;
+            }
+            //3번째 case
+            else
+            {
+               arr[i][j] = INF;
+            }
+         }
+         else {
+            if(!((i==b)&&(j==c)))
+               arr[i][j] = INF;
+         }
+         
+   
+         printf("%5d", arr[i][j]);
+      }
+      
+      printf("\n");
+   }
+   int z = 3 * i + j;
+   for (i = 0; i < 3; i++)
+   {
+      for (j = 0; j < 3; j++)
+      {
+         d[z] = arr[i][j];
+         printf("d[%d]:%2d\n",3*i+j,d[z]);
+      }
+   }
+}
+
+int main(void) {
+
+
+   func();
+
+   
+   return 0;
+}
